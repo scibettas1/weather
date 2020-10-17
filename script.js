@@ -4,6 +4,10 @@
     // Here we are building the URL we need to query the database
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&appid=" + APIKey;
 
+    //get users location for accurate weather
+    window.navigator.geolocation
+    .getCurrentPosition(console.log, console.log);
+
     // We then created an AJAX call
     $.ajax({
       url: queryURL,
