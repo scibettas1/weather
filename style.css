@@ -16,9 +16,6 @@ aside {
     padding: 10px;
     float: left
 }
-input {
-    border-color: -internal-light-dark #ececec, #ececec;
-}
 .btn {
     text-align: left;
     width:100%;

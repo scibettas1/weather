@@ -1,8 +1,9 @@
-    // This is our API key. Add your own API key between the ""
-    var APIKey = "ed721ed4c74684d8c960d41dea0e52e0";
 
     // Here we are building the URL we need to query the database
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid=ed721ed4c74684d8c960d41dea0e52e0";
+    console.log(queryURL)
+
+    var cityName = $("#search").val().trim()
 
     //get users location for accurate weather
     window.navigator.geolocation
@@ -26,7 +27,7 @@
       console.log(temp.toFixed(2))
       
       $(".temp").html("Temperature:" + temp);
-      $(".city").html("City: " + response.name);
+      $(".city").html("City: " + cityNameg);
       $(".wind").html("Wind: " + response.wind.speed);
       $(".humidity").html("Humidity: " + response.main.humidity);
 
