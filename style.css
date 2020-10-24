@@ -29,5 +29,10 @@ aside {
     margin: auto;
     width: 200px;
     height: 300px;
-    background-color: blue;
+    background-color:#0062cc;
+    padding: 15px;
+    color: white;
+}
+.spacing {
+    padding: 0px 20px 0px 20px;
 }

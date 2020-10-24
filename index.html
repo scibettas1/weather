@@ -10,7 +10,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -20,33 +20,68 @@
         <!--Search-->
         <form>
             <label for="search">Search for a City:</label><br>
-            <input type="text" id="search" name="search"><br>
+            <input type="text" id="search" name="search">
+            <button id="search-button">Search</button><br>
         </form>
         <br>
-        <button type="button" class="btn btn-light">Atlanta</button><br>
-        <button type="button" class="btn btn-light">Austin</button><br>
-        <button type="button" class="btn btn-light">Chicago</button><br>
-        <button type="button" class="btn btn-light">Denver</button><br>
-        <button type="button" class="btn btn-light">New York</button><br>
-        <button type="button" class="btn btn-light">Orlando</button><br>
-        <button type="button" class="btn btn-light">San Francisco</button><br>
-        <button type="button" class="btn btn-light">Seattle</button>
+        <button id="atlanta" type="button" class="btn btn-light">Atlanta</button><br>
+        <button id="austin" type="button" class="btn btn-light">Austin</button><br>
+        <button id="chicago" type="button" class="btn btn-light">Chicago</button><br>
+        <button id="denver" type="button" class="btn btn-light">Denver</button><br>
+        <button id="newYork" type="button" class="btn btn-light">New York</button><br>
+        <button id="orlando" type="button" class="btn btn-light">Orlando</button><br>
+        <button id="sanFranciso" type="button" class="btn btn-light">San Francisco</button><br>
+        <button id="seattle" type="button" class="btn btn-light">Seattle</button>
     </aside>
-    <section class="col-md-9 container">
-        <div class="row">
-
-            <!-- Retrieved data will be dumped here -->
-            <div class="city h1"></div><br>
-            <div class="wind"></div><br>
-            <div class="humidity"></div><br>
-            <div class="temp"></div><br>
-
-        </div>
-        <div class="row h3">
+    <section class="col-md-12">
+        <!-- Retrieved data will be dumped here -->
+        <div class="city row spacing h1"></div>
+        <div class="temp row spacing"></div>
+        <div class="wind row spacing"></div>
+        <div class="humidity row spacing"></div>
+        <br><br>
+        <div class="row h3 spacing">
             5-Day Forcast:
         </div>
-        <div class="row">
-            
+        <div class="row spacing">
+            <div class="blocks">
+                <div class="date row spacing"></div>
+                <br>
+                <div class="icon row spacing"></div>
+                <br>
+                <div class="temp row spacing"></div>
+                <div class="wind row spacing"></div>
+                <div class="humidity row spacing"></div>
+            </div>
+            <div class="blocks">
+                <div class="date row spacing"></div>
+                <br><br>
+                <div class="temp row spacing"></div>
+                <div class="wind row spacing"></div>
+                <div class="humidity row spacing"></div>
+            </div>
+            <div class="blocks">
+                <div class="date row spacing"></div>
+                <br><br>
+                <div class="temp row spacing"></div>
+                <div class="wind row spacing"></div>
+                <div class="humidity row spacing"></div>
+            </div>
+            <div class="blocks">
+                <div class="date row spacing"></div>
+                <br><br>
+                <div class="temp row spacing"></div>
+                <div class="wind row spacing"></div>
+                <div class="humidity row spacing"></div>
+            </div>
+            <div class="blocks">
+                <div class="date row spacing"></div>
+                <br><br>
+                <div class="temp row spacing"></div>
+                <div class="wind row spacing"></div>
+                <div class="humidity row spacing"></div>
+            </div>
+
         </div>
     </section>
 
