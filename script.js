@@ -45,8 +45,11 @@ $('#search-button').on("click", function (event) {
   var cityName = $("#search").val().trim();
   cities.push(cityName);
   console.log(cities)
+  console.log(cityName)
   searchForCity(cityName)
   localStorage.setItem("searchHistory", JSON.stringify(cities));
+  //how do I immediately push this to the history?
+  button.text(cityName).appendTo("#history");
 });
 
 //get items from local stoage
@@ -55,6 +58,8 @@ function pastSearch() {
   for (var i = 0; i < cities.length; i++) {
     var button = $("<button>");
     button.text(cities[i]).appendTo("#history");
+    $(button).addClass("btn btn-light");
+    //how do i get these buttons to function?
   }
 }
 pastSearch()
