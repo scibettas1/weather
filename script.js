@@ -21,7 +21,7 @@ $(document).ready(function () {
   var uvi = function (city) {
     //ajax for uv index(this doesn't work)
     $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/uvi/forcast?q=" + city + "&appid=ed721ed4c74684d8c960d41dea0e52e0",
+      url: "https://api.openweathermap.org/data/2.5/uvi/forcast?q=" + city + "&appid=65857d7f4e9480e88e56532b9f03712b",
       method: "GET"
     }).then(function (response) {
       $(".uv").html("UV Index: " + response.value + " &#37;");
@@ -31,17 +31,17 @@ $(document).ready(function () {
   var forcast = function (city) {
     //ajax call for 5 day forcast (also does not work)
     $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=ed721ed4c74684d8c960d41dea0e52e0",
+      url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=2a9072920062b87bd4001baee7c6639c",
       method: "GET"
     }).then(function (response) {
 
       // for loop to loop over the forcast 5 times
-      for (var i = 0; i < result.length; i++) {
-        if (result[i].dt_txt.indexOf('12:00:00') !== -1) {
+      for (var i = 0; i < response.length; i++) {
+        if (response[i].dt_txt.indexOf('12:00:00') !== -1) {
           //weather variables
-          var temp = Math.floor((result[i].main.temp - 273.15) * 1.8 + 32) + " °F";
-          var icon = result[i].weather[0].icon;
-          var humidity = (result[i].main.humidity) + "%";
+          var temp = Math.floor((response[i].main.temp - 273.15) * 1.8 + 32) + " °F";
+          var icon = response[i].weather[0].icon;
+          var humidity = (response[i].main.humidity) + "%";
           $(".icon").html(icon);
           $(".temp2").html("Temp: " + temp + " &#8457;");
           $(".humidity2").html("Humidity: " + humidity + " &#37;");
@@ -88,7 +88,6 @@ $(document).ready(function () {
   //on click event for city buttons
   $(".btn").click(function (event) {
     event.preventDefault()
-    console.log("is this thing running???")
     var cityBtn = $(this).text()
     searchForCity(cityBtn);
     console.log(cityBtn)
