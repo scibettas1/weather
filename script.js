@@ -31,21 +31,22 @@ $(document).ready(function () {
   var forcast = function (city) {
     //ajax call for 5 day forcast (also does not work)
     $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/forcast?q=" + city + "&appid=ed721ed4c74684d8c960d41dea0e52e0",
+      url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=ed721ed4c74684d8c960d41dea0e52e0",
       method: "GET"
     }).then(function (response) {
 
       // for loop to loop over the forcast 5 times
       for (var i = 0; i < result.length; i++) {
         if (result[i].dt_txt.indexOf('12:00:00') !== -1) {
-            //weather variables
-            var temp = Math.floor((result[i].main.temp - 273.15) * 1.8 + 32) + " °F";
-            var icon = result[i].weather[0].icon;
-            var humidity = (result[i].main.humidity) + "%";
-            $(".icon").html(icon);
-            $(".temp2").html("Temp: " + temp + " &#8457;");
-            $(".humidity2").html("Humidity: " + humidity + " &#37;");
-        }};
+          //weather variables
+          var temp = Math.floor((result[i].main.temp - 273.15) * 1.8 + 32) + " °F";
+          var icon = result[i].weather[0].icon;
+          var humidity = (result[i].main.humidity) + "%";
+          $(".icon").html(icon);
+          $(".temp2").html("Temp: " + temp + " &#8457;");
+          $(".humidity2").html("Humidity: " + humidity + " &#37;");
+        }
+      };
     });
   }
   //get items from local storage
@@ -54,10 +55,13 @@ $(document).ready(function () {
     cities = JSON.parse(window.localStorage.getItem("searchHistory"))
     console.log(cities)
   }
-
-  //function that adds the list item
-  //create HTML element
-  //call function to update page
+  //function that adds the list item to history without refreshing the page
+  function recentSearch() {
+    var cityName = $("#search").val().trim();
+    var button = $("<button>");
+    button.text(cityName).appendTo("#recentCity");
+    $(button).addClass("btn btn-light");
+  }
 
   //this one is for the search bar
   $('#search-button').on("click", function (event) {
@@ -68,7 +72,7 @@ $(document).ready(function () {
     console.log(cityName)
     searchForCity(cityName)
     localStorage.setItem("searchHistory", JSON.stringify(cities));
-    //how do I immediately push this to the history?
+    recentSearch()
   });
 
   //for loop to run through array in local storage
@@ -82,11 +86,12 @@ $(document).ready(function () {
   pastSearch()
 
   //on click event for city buttons
-  //this is almost right. what am I missing?
-  $(".btn").on("click", function (event) {
+  $(".btn").click(function (event) {
+    event.preventDefault()
+    console.log("is this thing running???")
     var cityBtn = $(this).text()
     searchForCity(cityBtn);
-    console.log(cityBtn)//doesn't log anything
+    console.log(cityBtn)
   });
 
 });
