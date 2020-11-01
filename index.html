@@ -22,62 +22,70 @@
             <label for="search">Search for a City:</label><br>
             <input type="text" id="search" name="search">
             <button id="search-button" class="btn-light">Search</button><br>
-            <div id="history"><br><br></div>
+            <div id="history"><br><br><p>Search History</p></div>
             <div id="recentCity"></div>
         </form>
         <br>
     </aside>
     <section class="col-md-9 container">
         <!-- Retrieved data will be dumped here -->
+
         <div class="city row spacing h1"></div>
-        <div class="temp row spacing"></div>
-        <div class="wind row spacing"></div>
-        <div class="humidity row spacing"></div>
-        <div class="uv row spacing"></div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="icon row spacing"></div>
+            </div>
+            <div class="col-md-2">
+                <div class="temp row spacing"></div>
+                <div class="wind row spacing"></div>
+                <div class="humidity row spacing"></div>
+                <div class="uv row spacing"></div>
+            </div>
+        </div>
         <br><br>
         <div class="row h3 spacing">
             5-Day Forcast:
         </div>
         <div class="row">
             <div class="blocks">
-                <div class="date row"></div>
+                <div id="date-1" class="row"></div>
                 <br>
-                <div class="icon row spacing"></div>
+                <div id="icon-1" class="row spacing"></div>
                 <br>
-                <div class="temp2 row spacing"></div>
-                <div class="humidity2 row spacing"></div>
+                <div id="temp-1" class=" row spacing"></div>
+                <div id="humid-1" class="row spacing"></div>
             </div>
             <div class="blocks">
-                <div class="date row"></div>
+                <div id="date-2" class="row"></div>
                 <br>
-                <div class="icon row spacing"></div>
+                <div id="icon-2" class="row spacing"></div>
                 <br>
-                <div class="temp2 row spacing"></div>
-                <div class="humidity2 row spacing"></div>
+                <div id="temp-2" class="row spacing"></div>
+                <div id="humid-2" class="row spacing"></div>
             </div>
             <div class="blocks">
-                <div class="date row"></div>
+                <div id="date-3" class="row"></div>
                 <br>
-                <div class="icon row spacing"></div>
+                <div id="icon-3" class="row spacing"></div>
                 <br>
-                <div class="temp2 row spacing"></div>
-                <div class="humidity2 row spacing"></div>
+                <div id="temp-3" class="row spacing"></div>
+                <div id="humid-3" class="row spacing"></div>
             </div>
             <div class="blocks">
-                <div class="date row"></div>
+                <div id="date-4" class="row"></div>
                 <br>
-                <div class="icon row spacing"></div>
+                <div id="icon-4" class="row spacing"></div>
                 <br>
-                <div class="temp2 row spacing"></div>
-                <div class="humidity2 row spacing"></div>
+                <div id="temp-4" class="row spacing"></div>
+                <div id="humid-4" class="row spacing"></div>
             </div>
             <div class="blocks">
-                <div class="date row"></div>
+                <div id="date-5" class="row"></div>
                 <br>
-                <div class="icon row spacing"></div>
+                <div id="icon-5" class="row spacing"></div>
                 <br>
-                <div class="temp2 row spacing"></div>
-                <div class="humidity2 row spacing"></div>
+                <div id="temp-5" class="row spacing"></div>
+                <div id="humid-5" class="row spacing"></div>
             </div>
 
         </div>

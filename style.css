@@ -4,12 +4,17 @@ body {
 
 header {
     position: relative;
-    background-color: grey;
+    background-image: url(images/weather.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: white;
     font-family: 'Montserrat', sans-serif;
-    font-size: 40px;
+    text-shadow: 4px 3px #00000082;
+    font-weight: 700;
+    font-size: 47px;
     margin: auto;
-    padding: 20px;
+    padding: 30px;
 }
 aside {
     background-color:#f6f6f6;
@@ -32,10 +37,24 @@ section {
     margin: auto;
     width: 152px;
     height: 200px;
-    background-color:#0062cc;
+    background-color:#2b3c5a;
     padding: 10px;
     color: white;
 }
 .spacing {
     padding: 0px 20px 0px 20px;
+}
+
+.low{
+    color: white;
+    background: green;
+}
+
+.high {
+    color:white;
+    background: red;
+}
+.mod {
+    color: black;
+    background: yellow;
 }

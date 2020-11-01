@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-  //wrap each ajax call in a seaparte function
   var searchForCity = function (city) {
     //ajax call for current weather
     $.ajax({
@@ -8,44 +6,53 @@ $(document).ready(function () {
       method: "GET"
     }).then(function (response) {
       // convert Kelvin to farenheight
+      console.log(response)
+      var lat = response.coord.lat
+      var lon = response.coord.lon
       var temp = Math.ceil(((response.main.temp - 275.13) * 1.8) + 32);
+      var icon = "<img src=https://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png>";
       $(".temp").html("Temp: " + temp + " &#8457;");
+      $(".icon").html(icon);
       $(".city").html("<br>" + response.name + "<br>");
       $(".wind").html("Wind: " + response.wind.speed + " MPH");
       $(".humidity").html("Humidity: " + response.main.humidity + " &#37;");
-      //call the other 2 functions
-      uvi()
-      forcast()
+      //ajax for uv index
+      $.ajax({
+        url: "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=65857d7f4e9480e88e56532b9f03712b",
+        method: "GET"
+      }).then(function (response) {
+        $(".uv").html("UV Index: " + response.value + " &#37;");
+        //create if else statements to change color
+        if (response.value < 2) {
+          $(".uv").addClass("low")
+        } else if (response.value > 6) {
+          $(".uv").removeClass("low")
+          $(".uv").addClass("high")
+        } else {
+          $(".uv").removeClass("low")
+          $(".uv").removeClass("high")
+          $(".uv").addClass("mod")
+        }
+      });
     });
-  }
-  var uvi = function (city) {
-    //ajax for uv index(this doesn't work)
-    $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/uvi/forcast?q=" + city + "&appid=65857d7f4e9480e88e56532b9f03712b",
-      method: "GET"
-    }).then(function (response) {
-      $(".uv").html("UV Index: " + response.value + " &#37;");
-      //create if else statements to change color
-    });
-  }
-  var forcast = function (city) {
-    //ajax call for 5 day forcast (also does not work)
+    //ajax call for 5 day forcast
     $.ajax({
       url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=2a9072920062b87bd4001baee7c6639c",
       method: "GET"
     }).then(function (response) {
-
-      // for loop to loop over the forcast 5 times
-      for (var i = 0; i < response.length; i++) {
-        if (response[i].dt_txt.indexOf('12:00:00') !== -1) {
-          //weather variables
-          var temp = Math.floor((response[i].main.temp - 273.15) * 1.8 + 32) + " °F";
-          var icon = response[i].weather[0].icon;
-          var humidity = (response[i].main.humidity) + "%";
-          $(".icon").html(icon);
-          $(".temp2").html("Temp: " + temp + " &#8457;");
-          $(".humidity2").html("Humidity: " + humidity + " &#37;");
-        }
+      console.log(response)
+      // for loop to loop over the forcast 6 times (because 0 is today's weather)
+      for (var i = 0; i < 6; i++) {
+        var integer = i
+        //weather variables
+        var date = response.list[i].dt_txt
+        var temp2 = Math.floor((response.list[i].main.temp - 273.15) * 1.8 + 32) + " °F";
+        var icon2 = "<img src=https://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + ".png>";
+        var humidity = (response.list[i].main.humidity) + "%";
+        $("#date-" + integer).html(date);
+        $("#icon-" + integer).html(icon2);
+        $("#temp-" + integer).html("Temp: " + temp2);
+        $("#humid-" + integer).html("Humidity: " + humidity);
       };
     });
   }
@@ -92,5 +99,4 @@ $(document).ready(function () {
     searchForCity(cityBtn);
     console.log(cityBtn)
   });
-
 });
