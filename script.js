@@ -41,18 +41,34 @@ $(document).ready(function () {
       method: "GET"
     }).then(function (response) {
       console.log(response)
-      // for loop to loop over the forcast 6 times (because 0 is today's weather)
-      for (var i = 0; i < 6; i++) {
-        var integer = i
-        //weather variables
-        var date = response.list[i].dt_txt
-        var temp2 = Math.floor((response.list[i].main.temp - 273.15) * 1.8 + 32) + " °F";
-        var icon2 = "<img src=https://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + ".png>";
-        var humidity = (response.list[i].main.humidity) + "%";
-        $("#date-" + integer).html(date);
-        $("#icon-" + integer).html(icon2);
-        $("#temp-" + integer).html("Temp: " + temp2);
-        $("#humid-" + integer).html("Humidity: " + humidity);
+      // for loop to loop over the forcast 5 times
+      for (var i = 0; i < 40; i++) {
+        if (response.list[i].dt_txt.indexOf('12:00:00') !== -1) {
+          var integer = i
+          console.log(i)
+          //weather variables
+          var dateConvertVal = dateConvert();
+          console.log(dateConvertVal);
+          var temp2 = Math.floor((response.list[i].main.temp - 273.15) * 1.8 + 32) + " °F";
+          var icon2 = "<img src=https://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + ".png>";
+          var humidity = (response.list[i].main.humidity) + "%";
+          $("#date-" + integer).html(dateConvertVal);
+          $("#icon-" + integer).html(icon2);
+          $("#temp-" + integer).html("Temp: " + temp2);
+          $("#humid-" + integer).html("Humidity: " + humidity);
+          function dateConvert() {
+            var a = new Date(response.list[i].dt_txt);
+            console.log(a)
+            var monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var year = a.getFullYear();
+            var month = monthList[a.getMonth()];
+            var date = a.getDate();
+            console.log(date)
+            var time = month + ' ' + date + ', ' + year;
+            console.log(time)
+            return time;
+          }
+        }
       };
     });
   }
@@ -99,4 +115,5 @@ $(document).ready(function () {
     searchForCity(cityBtn);
     console.log(cityBtn)
   });
+
 });
